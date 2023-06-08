@@ -8,16 +8,18 @@ const AddItem = ({ handleClickAdd, isNight }) => {
     setValue(e.target.value);
   };
 
-  // Обработчик нажатия клавиши Enter в input при добавлении задачи
+  
   const handleKey = (e) => {
-    if (e.key === 'Enter' && value.length > 0) {
-      setValue('');
+    const isEnterKey = e.key === 'Enter';
+    const hasValue = value.length > 0;
+  
+    if (isEnterKey && hasValue) {
       const task = {
         status: false,
         text: value,
-        // ID генерируется через дату (используется время создания задачи). Это обеспечивает уникальность id
-        id: Number(new Date().getTime()),
+        id: Date.now(), // Генеруємо унікальний id з використанням Date.now()
       };
+      setValue('');
       handleClickAdd(task);
     }
   };

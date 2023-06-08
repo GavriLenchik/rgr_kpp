@@ -26,11 +26,8 @@ const Main = ({ handleSwitchTheme, isNight }) => {
 
   // Обработчик сохранения статуса Исполненно
   const handleCompleteStatusUpdate = (item) => {
-    const newList = listItems.map(el => {
-      if (el.id === item.id) {
-        el.status = item.status;
-      };
-      return el;
+    const newList = listItems.map((el) => {
+      return el.id === item.id ? { ...el, status: item.status } : el;
     });
     setListItems(newList);
   };
@@ -54,7 +51,7 @@ const Main = ({ handleSwitchTheme, isNight }) => {
   // Выгружаю массив с задачами при перезагрузке страницы
   useEffect(() => {
     const userList = JSON.parse(localStorage.getItem('userList'));
-    if (userList) {
+    if (userList && Array.isArray(userList)) {
       setListItems(userList);
     }
   }, []);
