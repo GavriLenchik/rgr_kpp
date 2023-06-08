@@ -2,6 +2,10 @@ import { useEffect, useState } from 'react';
 import Title from '../components/Title';
 import AddItem from '../components/AddItem';
 import { ListItems } from '../components/ListItems';
+import UserForm from '../components/UserForm';
+import { LanguageProvider } from '../components/LanguageContext';
+import LocalizedButton from '../components/LocalizedButton';
+import axios from 'axios';
 
 const Main = ({ handleSwitchTheme, isNight }) => {
   
@@ -31,6 +35,15 @@ const Main = ({ handleSwitchTheme, isNight }) => {
     setListItems(newList);
   };
 
+  const handleButtonClick = async () => {
+    try {
+      const response = await axios.post('/save-data', { listItems });
+      console.log(response.data); // реагування на відповідь сервера
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   // Записывает в LocalStorage обновленный массив с задачами при его изменении. Пустой массив не записывает. 
   useEffect(() => {
     if (listItems.length > 0) {
@@ -47,8 +60,11 @@ const Main = ({ handleSwitchTheme, isNight }) => {
   }, []);
 
   return (
+    <LanguageProvider>
     <div className="main">
       <Title handleSwitchTheme={handleSwitchTheme} />
+      <button className={'btn btn-primary btn-lg btn-down'} onClick={handleButtonClick}>Завантажити список</button> 
+      <button className={'btn btn-success btn-lg'}>Змінити мову інтерфейсу</button>
       <AddItem handleClickAdd={handleAddItem} isNight={isNight}  />
       <ListItems
         listItems={listItems}
@@ -56,7 +72,10 @@ const Main = ({ handleSwitchTheme, isNight }) => {
         isNight={isNight}
         handleCompleteStatusUpdate={handleCompleteStatusUpdate}
       />
+      <UserForm />
     </div>
+    </LanguageProvider>
+    
   );
 };
 

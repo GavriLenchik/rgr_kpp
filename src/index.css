@@ -20,3 +20,4 @@
 @import url('./blocks/new-task/__input/_night-theme/new-task__input_night-theme_active.css');
 @import url('./blocks/task/__text-edit-input/_night-theme/task__text-edit-input_night-theme_active.css');
 @import url('./blocks/body/_night-theme/body_night-theme_active.css');
+@import url('./blocks/buttons/btn.css');

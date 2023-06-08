@@ -28,7 +28,7 @@ const AddItem = ({ handleClickAdd, isNight }) => {
         className={`new-task__input ${
           isNight && 'new-task__input_night-theme_active'
         }`}
-        placeholder="Add New Task"
+        placeholder="Додати нову задачу"
         name="addNewTask"
         id="addNewTask"
         value={value}

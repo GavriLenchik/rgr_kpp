@@ -1,0 +1,17 @@
+.btn-down {
+    margin: 20px;
+}
+.btn-send {
+    margin-top: 20px;
+}
+.reg{
+    background-color: beige;
+    border: 2px solid silver;
+    border-radius: 40px;
+    text-align: center;
+    margin-top: 20px;
+}
+.form-inp{
+    margin: 0px 20px 0px 96px;
+    width: 400px;
+}
